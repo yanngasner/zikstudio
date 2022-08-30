@@ -22,7 +22,6 @@ const audioContext = new AudioContext();
  * @param {String} url the url of the audio we'd like to fetch
  */
 const drawAudio = (url) => {
-  console.log("drawing");
   fetch(url)
     .then((response) => response.arrayBuffer())
     .then((arrayBuffer) => audioContext.decodeAudioData(arrayBuffer))
@@ -35,9 +34,8 @@ const drawAudio = (url) => {
  * @returns {Array} an array of floating point numbers
  */
 const filterData = (audioBuffer) => {
-  console.log(audioBuffer.length);
   const rawData = audioBuffer.getChannelData(0); // We only need to work with one channel of data
-  const samples = 10000; // Number of samples we want to have in our final data set
+  const samples = 70; // Number of samples we want to have in our final data set
   const blockSize = Math.floor(rawData.length / samples); // the number of samples in each subdivision
   const filteredData = [];
   for (let i = 0; i < samples; i++) {
